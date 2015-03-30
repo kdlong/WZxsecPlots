@@ -1,0 +1,86 @@
+{  
+    "iso_all_m": {  
+        "Initialize": {  
+            "type": "TH1F",
+            "nbins": 100,
+            "xmin": 0,
+            "xmax": 0.15
+        },
+        "Attributes": {  
+            "SetLineColor": "ROOT.kRed + 3",
+            "SetLineWidth": 2,
+            "SetFillColor": "ROOT.kRed - 7",
+            "GetXaxis().SetRangeUser": [  
+                0,
+                0.15
+            ], 
+            "GetXaxis().SetTitle": "#mu Isolation (RelPFIsoDBDefault)",  
+            "GetYaxis().SetTitle": "Events"  
+        }
+    },  
+    "iso_all_e": {  
+        "Initialize": {  
+            "type": "TH1F",
+            "nbins": 100,
+            "xmin": 0,
+            "xmax": 0.15
+        },
+        "Attributes": {  
+            "SetLineColor": "ROOT.kGreen + 3",
+            "SetLineWidth": 2,
+            "SetFillColor": "ROOT.kGreen - 7",
+            "GetXaxis().SetRangeUser": [  
+                0,
+                0.15
+            ], 
+            "GetXaxis().SetTitle": "e Isolation (RelPFIsoRho)",  
+            "GetYaxis().SetTitle": "Events"  
+        }
+    },  
+    "iso_e": {  
+        "Initialize": {  
+            "type": "TH1F",
+            "nbins": 100,
+            "xmin": 0,
+            "xmax": 0.15
+        },
+        "Attributes": {  
+            "SetLineColor": "ROOT.kGreen - 6",
+            "SetLineWidth": 2,
+            "GetXaxis().SetRangeUser": [  
+                0,
+                0.15
+            ], 
+            "GetXaxis().SetTitle": "e Isolation (RelPFIsoRho)",  
+            "GetYaxis().SetTitle": "Events"  
+        }
+    },  
+    "iso_m": {  
+        "Initialize": {  
+            "type": "TH1F",
+            "nbins": 100,
+            "xmin": 0,
+            "xmax": 0.15
+        },
+        "Attributes": {  
+            "SetLineColor": "ROOT.kRed - 6",
+            "SetLineWidth": 2,
+            "GetXaxis().SetRangeUser": [  
+                0,
+                0.15
+            ], 
+            "GetXaxis().SetTitle": "#mu Isolation (RelPFIsoDBDefault)",  
+            "GetYaxis().SetTitle": "Events"  
+        }
+    },  
+    "Canvas": {  
+        "Initialize": {  
+            "type": "TCanvas",
+            "ww": 800,
+            "wh": 600
+        },
+        "Attributes": {
+            "SetRightMargin" : 1.2                                                                                            
+        }
+    }
+}

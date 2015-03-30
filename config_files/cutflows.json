@@ -1,0 +1,46 @@
+{
+    "cutflow": {  
+        "Attributes": {  
+            "SetLineColor": "ROOT.kBlack",
+            "SetLineWidth": 2,
+            "GetXaxis().SetRange": [  
+                1,
+                8
+            ], 
+            "GetXaxis().SetLabelOffset" : 0.01,
+            "SetTitle" : "",
+            "SetStats" : 0,
+            "SetLabelSize" : [
+                0.04,
+                "x"
+            ]
+        }
+    },  
+    "cutflow_genfid": {  
+        "Attributes": {  
+            "SetLineColor": "ROOT.kGray + 1",
+            "SetLineWidth": 2,
+            "GetXaxis().SetRange": [  
+                1,
+                8
+            ], 
+            "GetXaxis().SetLabelOffset" : 0.01,
+            "SetTitle" : "",
+            "SetStats" : 0,
+            "SetLabelSize" : [
+                0.04,
+                "x"
+            ]
+        }
+    },  
+    "Canvas": {  
+        "Initialize": {  
+            "type": "TCanvas",
+            "ww": 800,
+            "wh": 600
+        },
+        "Attributes": {
+            "SetRightMargin" : 1.2                                                                                            
+        }
+    }
+}
