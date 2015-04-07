@@ -32,6 +32,12 @@ def printHist(hist, canvas, output_file_name, cwd):
         canvas.Print(output_file_name)
         hist.Delete()
 
+def plotOverflow(hist):
+    # Returns num bins + overflow + underflow
+    num_bins = hist.GetSize() - 2
+    add_overflow = hist.GetBinContent(num_bins) + hist.GetBinContent(num_bins + 1)
+    hist.SetBinContent(num_bins, add_overflow)
+
 def main(): 
     args = getComLineArgs()
     root_file = ROOT.TFile(args.root_file)                          
@@ -39,10 +45,10 @@ def main():
     cwd = os.getcwd()
     os.chdir(sys.path[0])
     
-    eiso_cut = " && l%i/Iso < " + str(args.eiso_cut) if args.eiso_cut != 0 else ""
-    miso_cut = " && l%i/Iso < " + str(args.miso_cut) if args.miso_cut != 0 else ""
+    eiso_cut = " && l%i.Iso < " + str(args.eiso_cut) if args.eiso_cut != 0 else ""
+    miso_cut = " && l%i.Iso < " + str(args.miso_cut) if args.miso_cut != 0 else ""
     info = {'name' : "iso_%s",
-            'branch' : "l%i/Iso",
+            'branch' : "l%i.Iso",
             'cut_string' : "l%iFlv==\"%s\""
     } 
     config = config_object.ConfigObject("config_files/iso_all_hists.json")
@@ -52,8 +58,8 @@ def main():
         name = info['name'].replace("_", "_all_" if args.combine else "_") % lep
         iso_hist = config.getObject(name)
         for i in args.lepton_nums:
-            cut_string =  "".join([info['cut_string'] % (i, lep), #""])
-                (eiso_cut % i) if lep == "e" else (miso_cut % i)])
+            cut_string =  "".join([info['cut_string'] % (i, lep), ""])
+                #(eiso_cut % i) if lep == "e" else (miso_cut % i)])
             print "The cut is %s" % cut_string
             plotter.loadHistFromTree(iso_hist, 
                 root_file, 
@@ -61,6 +67,7 @@ def main():
                 info['branch'] % i, 
                 cut_string,
                 args.combine if i != 1 else False)
+            plotOverflow(iso_hist)
             config.setAttributes(iso_hist, name)
             if not args.combine:
                 printHist(iso_hist, 

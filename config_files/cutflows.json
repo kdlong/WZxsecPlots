@@ -5,13 +5,15 @@
             "SetLineWidth": 2,
             "GetXaxis().SetRange": [  
                 1,
-                8
+                9
             ], 
+            "GetXaxis().SetBinLabel": [2, "Fiducial + loose p_{T}"],
             "GetXaxis().SetLabelOffset" : 0.01,
+            "GetYaxis().SetTitle" : "Events Passing Selection",
             "SetTitle" : "",
             "SetStats" : 0,
             "SetLabelSize" : [
-                0.04,
+                0.05,
                 "x"
             ]
         }
@@ -22,13 +24,15 @@
             "SetLineWidth": 2,
             "GetXaxis().SetRange": [  
                 1,
-                8
-            ], 
+                9
+            ],
+            "GetXaxis().SetBinLabel": [2, "Fiducial + loose p_{T}"],
             "GetXaxis().SetLabelOffset" : 0.01,
+            "GetYaxis().SetTitle" : "Events Passing Selection",
             "SetTitle" : "",
             "SetStats" : 0,
             "SetLabelSize" : [
-                0.04,
+                0.05,
                 "x"
             ]
         }
@@ -40,7 +44,7 @@
             "wh": 600
         },
         "Attributes": {
-            "SetRightMargin" : 1.2                                                                                            
+            "SetRightMargin" : 1.2
         }
     }
 }

@@ -23,8 +23,7 @@ def getCutFlowHist(root_file_name, config, name_in_config):
 
 def stackFromConfig(config, root_file_name):
     hist_stack = ROOT.THStack("cutflow stack", "cutflow stack")
-    for hist_name in config.getListOfHists():
-        
+    for hist_name in config.getListOfHists(): 
         hist = getCutFlowHist(
             root_file_name.replace(".", hist_name.replace("cutflow", "") + "."), 
             config,
@@ -33,6 +32,7 @@ def stackFromConfig(config, root_file_name):
     print root_file_name.replace(".", hist_name.replace("cutflow", "") + "."), 
     return hist_stack
 def main():
+    ROOT.gROOT.SetBatch(True)
     args = getComLineArgs()
     config_file = "/cms/kdlong/WZxsec/InitialStateAnalysis/" \
                   "my_plotting/config_files/cutflows.json"
@@ -44,7 +44,20 @@ def main():
     else:
         hist_stack = stackFromConfig(config, args.root_file)
         hist_stack.Draw("nostack")
-    
+        hist_stack.GetXaxis().SetRange(1, 8)    
+        hist_stack.GetYaxis().SetTitleSize(0.035)    
+        hist_stack.GetYaxis().SetTitle("Events Passing Selection")    
+        hist_stack.GetHistogram().SetLabelSize(0.04)
+        legend = ROOT.TLegend(.55, .75, .88, .88)
+
+        name = {}
+        name['cutflow'] = "Reconstructed fiducial"
+        name['cutflow_genfid'] = "Gen-level fiducial"
+        for hist in hist_stack.GetHists():
+            legend.AddEntry(hist, name[hist.GetName()], "f")
+        legend.SetFillColor(0)
+        legend.Draw()
+
     canvas.Print(args.output_file)                                                                                       
 
 if __name__ == "__main__":

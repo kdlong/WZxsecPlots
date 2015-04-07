@@ -2,6 +2,7 @@
 import argparse
 import ROOT
 import json
+import array
 
 class ConfigObject:
     def __init__(self, config_file):
@@ -11,9 +12,14 @@ class ConfigObject:
     def getObject(self, object_name):
         initialize = self.data[object_name]['Initialize']
         if "TH1" in initialize['type']:
-            tObject = ROOT.TH1F(object_name, object_name, 
-                            initialize['nbins'], initialize['xmin'], 
-                            initialize['xmax'])
+            if "varbins" not in initialize:
+                tObject = ROOT.TH1F(object_name, object_name, 
+                    initialize['nbins'], initialize['xmin'], 
+                    initialize['xmax'])
+            else:
+                tObject = ROOT.TH1F(object_name, object_name, 
+                    initialize['nbins'], 
+                    array.array('d', initialize['varbins'])) 
             tObject.SetDirectory(ROOT.gROOT)
         elif initialize['type'] == "TCanvas":
             tObject = ROOT.TCanvas(object_name, object_name, 
